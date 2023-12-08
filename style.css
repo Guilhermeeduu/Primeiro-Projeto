@@ -27,13 +27,16 @@
 }
 body {
   background: var(--bg-url) no-repeat top center/cover;
+  height: 100vh;
 }
 body * {
   font-family: "Inter", sans-serif;
   color: var(--text-color);
 }
 #container {
-  width: 360px;
+  width: 100%;
+  max-width: 588px;
+
   margin: 58px auto 0px;
   padding: 0px 24px;
 }
@@ -58,8 +61,6 @@ body * {
   position: relative;
   width: 64px;
   margin: 4px auto;
-
-
 }
 /*switch*/
 #switch button {
@@ -70,13 +71,15 @@ body * {
   border-radius: 50%;
   position: absolute;
   z-index: 1;
-transform: translateY(-50%);
-top: 50%;
-left: 0;
-
-
+  transform: translateY(-50%);
+  top: 50%;
+  left: 0;
+  animation: slide-back 0.2s;
 }
 
+#switch button:hover {
+  outline: 8px solid var(--highlight-color);
+}
 #switch span {
   display: block;
   width: 64px;
@@ -89,8 +92,7 @@ left: 0;
 }
 
 .light #switch button {
-  right: 0;
-  left: initial;
+  animation: slide-in 0.2s forwards;
 }
 /* links */
 
@@ -100,7 +102,6 @@ ul {
   gap: 16px;
   flex-direction: column;
   margin-top: 24px;
- 
 }
 ul li a {
   padding: 16px 24px;
@@ -148,21 +149,29 @@ ul li a:hover {
   background: var(--highlight-color);
 }
 
-footer {
+p1 {
   font-size: 14px;
   font-weight: 400;
   line-height: 24px;
   transition: 0.2s;
-  border-radius: 50%;
+  justify-content: center;
   display: flex;
-  width: 24px;
-  height: 24px;
-  margin-left: 145px;
 }
 
-footer:hover {
-  color: blueviolet;
-  font-size: 14px;
-  font-weight: 400;
-  
+@keyframes slide-in {
+  from {
+    right: 0;
+  }
+  to {
+    left: 50%;
+  }
+}
+
+@keyframes slide-back {
+  from {
+    left: 50%;
+  }
+  to {
+    right: 0;
+  }
 }
